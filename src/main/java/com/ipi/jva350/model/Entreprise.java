@@ -1,6 +1,6 @@
 package com.ipi.jva350.model;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -143,7 +143,8 @@ public final class Entreprise {
 
     public static boolean estDansPlage(LocalDate d, LocalDate debut, LocalDate fin) {
         // à implémenter en TDD !
-        throw new NotImplementedException();
+       // throw new NotImplementedException();
+        throw new RuntimeException("TODO");
     }
 
 }
