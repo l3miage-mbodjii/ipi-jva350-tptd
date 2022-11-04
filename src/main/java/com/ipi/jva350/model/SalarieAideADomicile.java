@@ -69,8 +69,11 @@ public class SalarieAideADomicile {
      * @return
      */
     public boolean aLegalementDroitADesCongesPayes() {
-        return this.getJoursTravaillesAnneeNMoins1() > 10;
+        return this.getJoursTravaillesAnneeNMoins1() >= 10;
     }
+
+
+
 
     /**
      * @param dateDebut
@@ -214,7 +217,7 @@ public class SalarieAideADomicile {
     public void setMoisDebutContrat(LocalDate moisDebutContrat) {
         this.moisDebutContrat = moisDebutContrat;
     }
-    
+
 
     @Override
     public boolean equals(Object o) {
