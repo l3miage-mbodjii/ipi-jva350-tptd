@@ -136,7 +136,7 @@ public class SalarieAideADomicileTest {
             "'2022-07-02', '2022-07-04', 1",
             "'2022-07-02', '2022-07-02', 0"
     })
-    @Disabled
+    //@Disabled
     void testCalculeJoursDeCongeDecomptesPourPlageParametrized(String debut, String fin, double expectedNbJoursDeCongeDecomptes) {
         // Given :
         SalarieAideADomicile aide = new SalarieAideADomicile("Jeanne",
