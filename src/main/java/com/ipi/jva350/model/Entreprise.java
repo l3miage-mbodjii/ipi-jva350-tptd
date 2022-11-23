@@ -141,12 +141,8 @@ public final class Entreprise {
     }
 
     public static boolean estDansPlage(LocalDate d, LocalDate debut, LocalDate fin) {
-        // à implémenter en TDD !
 
-       // throw new NotImplementedException();
-
-
-        throw new RuntimeException("à implémenter en TDD !");
+        return ((d.equals(debut) || d.isAfter(debut)) && (d.equals(fin) || d.isBefore(fin)));
 
     }
 

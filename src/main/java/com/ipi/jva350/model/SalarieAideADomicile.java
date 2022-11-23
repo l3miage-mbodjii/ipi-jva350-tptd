@@ -22,6 +22,13 @@ public class SalarieAideADomicile {
 
     public static List<DayOfWeek> joursHabituellementTravailles = new ArrayList<DayOfWeek>();
 
+    static {
+        joursHabituellementTravailles.add(DayOfWeek.MONDAY);
+        joursHabituellementTravailles.add(DayOfWeek.TUESDAY);
+        joursHabituellementTravailles.add(DayOfWeek.WEDNESDAY);
+        joursHabituellementTravailles.add(DayOfWeek.THURSDAY);
+        joursHabituellementTravailles.add(DayOfWeek.FRIDAY);
+    }
 
     private LocalDate moisEnCours;
     private LocalDate moisDebutContrat;
@@ -59,15 +66,14 @@ public class SalarieAideADomicile {
      * D'après https://femme-de-menage.ooreka.fr/comprendre/conges-payes-femme-de-menage :
      * Pour s'ouvrir des droits à congés payés – capitalisation de jours + prise et/ou paiement – l'aide ménagère doit avoir travaillé pour le particulier employeur :
      *     pendant au moins dix jours (pas forcément de suite) ;
-     *     à l'intérieur d'une période de temps – dite de « référence » – allant du 1er juin de l'année N au 31 mai de l'année N + 1.
+     *     à l'intérieur d'une période de temps – dite de « référence » – allant du 1er juin de l'année N au 31 mai de l'année N - 1.
+     * NB. on considère que la précédente ligne est correcte d'un point de vue des spécifications métier
+     * bien que l'originale dans le lien dit "N+1" au lieu de "N-1"
      * @return
      */
     public boolean aLegalementDroitADesCongesPayes() {
         return this.getJoursTravaillesAnneeNMoins1() >= 10;
     }
-
-
-
 
     /**
      * @param dateDebut
@@ -89,7 +95,7 @@ public class SalarieAideADomicile {
 
         LocalDate jour = dateDebut;
         if (dateDebut.getDayOfWeek().getValue() != DayOfWeek.SUNDAY.getValue()
-                    && !Entreprise.estJourFerie(dateDebut) && estHabituellementTravaille(dateDebut)) {
+                && !Entreprise.estJourFerie(dateDebut) && estHabituellementTravaille(dateDebut)) {
             joursDeCongeDecomptes.add(dateDebut);
         }
         for (jour = jour.plusDays(1) ; jour.minusDays(1).isBefore(dateFin)

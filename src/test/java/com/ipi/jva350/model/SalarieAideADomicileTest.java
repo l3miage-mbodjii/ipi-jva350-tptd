@@ -108,7 +108,7 @@ public class SalarieAideADomicileTest {
     }
 
 
-    /*
+
     @Test
     void testCalculeJoursDeCongeDecomptesPourPlage() {
         // When :
@@ -127,7 +127,7 @@ public class SalarieAideADomicileTest {
         expected.add(LocalDate.parse("2022-07-02"));
         Assertions.assertEquals(expected, res);
     }
-*/
+
 
     @ParameterizedTest(name = "Entre {0} et {1}, nombre de JoursDeCongeDecomptes devrait être {2}")
     @CsvSource({
@@ -136,7 +136,6 @@ public class SalarieAideADomicileTest {
             "'2022-07-02', '2022-07-04', 1",
             "'2022-07-02', '2022-07-02', 0"
     })
-    //@Disabled
     void testCalculeJoursDeCongeDecomptesPourPlageParametrized(String debut, String fin, double expectedNbJoursDeCongeDecomptes) {
         // Given :
         SalarieAideADomicile aide = new SalarieAideADomicile("Jeanne",
@@ -151,6 +150,7 @@ public class SalarieAideADomicileTest {
         // Then :
         Assertions.assertEquals(expectedNbJoursDeCongeDecomptes, res.size());
     }
+
 
 }
 
