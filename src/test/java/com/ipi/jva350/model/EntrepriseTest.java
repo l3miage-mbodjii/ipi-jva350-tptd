@@ -1,12 +1,14 @@
 package com.ipi.jva350.model;
 
-import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.h2.tools.Console;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class EntrepriseTest {
 
@@ -76,4 +78,35 @@ class EntrepriseTest {
     }
 
 
+    @ParameterizedTest(name = "{0} est un jour feries")
+    @ValueSource(strings = {
+            "2022-01-01",
+            "2022-05-01",
+            "2022-07-14",
+            "2022-08-15",
+            "2022-12-25"
+    })
+    void estJourFerie(String date) {
+
+        //Given When
+        boolean res = Entreprise.estJourFerie(LocalDate.parse(date));
+        //Then
+        Assertions.assertEquals(true,res);
+    }
+
+    @ParameterizedTest(name = "{0} est un jour feries")
+    @ValueSource(strings = {
+            "2022-01-10",
+            "2022-08-01",
+            "2021-12-14",
+            "2022-08-13",
+            "2022-09-17"
+    })
+    void estNonJourFerie(String date) {
+
+        //Given When
+        boolean res = Entreprise.estJourFerie(LocalDate.parse(date));
+        //Then
+        Assertions.assertEquals(false,res);
+    }
 }
