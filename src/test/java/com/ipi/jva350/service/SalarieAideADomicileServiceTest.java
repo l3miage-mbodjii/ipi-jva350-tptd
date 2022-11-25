@@ -27,7 +27,6 @@ class SalarieAideADomicileServiceIntegrationTest {
                 LocalDate.of(2021, 7, 1), LocalDate.now(),
                 0, 0, 9,
                 1, 0);
-
         // When
         salarieAideADomicileService.clotureMois(aide, 20);
         // Then
