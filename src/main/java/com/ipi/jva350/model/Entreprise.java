@@ -71,7 +71,7 @@ public final class Entreprise {
 
     public static boolean bissextile(int y) {
         String tmp = String.valueOf(y);
-        if (tmp.charAt(2) == '1' || tmp.charAt(2) == '3' || tmp.charAt(2) == 5 || tmp.charAt(2) == '7' || tmp.charAt(2) == '9') {
+        if (tmp.charAt(2) == '1' || tmp.charAt(2) == '3' || tmp.charAt(2) == '5' || tmp.charAt(2) == '7' || tmp.charAt(2) == '9') {
             if (tmp.charAt(3)=='2'||tmp.charAt(3)=='6') return true;
             else
                 return false;
@@ -134,7 +134,7 @@ public final class Entreprise {
         int monEntier = (int) Entreprise.joursFeries(jour).stream().filter(d ->
                 d.equals(jour)).count();
         int test = bissextile(jour.getYear()) ? 1 : 0;
-        if (test != 0 && !(monEntier > 1)) {
+        if (test != 0 && !(monEntier == 1)) {
             test--;
         }
         return monEntier != test;
