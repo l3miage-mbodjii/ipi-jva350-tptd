@@ -1,24 +1,39 @@
 package com.ipi.jva350.service;
-
 import com.ipi.jva350.exception.SalarieException;
 import com.ipi.jva350.model.SalarieAideADomicile;
+import com.ipi.jva350.repository.SalarieAideADomicileRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class SalarieAideADomicileServiceIntegrationTest {
+@AutoConfigureMockMvc
+public class SalarieAideADomicileServiceTest {
 
+    @MockBean
+    private SalarieAideADomicileRepository salarieAideADomicileRepository;
     @Autowired
     private SalarieAideADomicileService salarieAideADomicileService;
+
+    @Test
+    @BeforeEach
+    void repositSalarie(){
+       Mockito.when(salarieAideADomicileRepository.partCongesPrisTotauxAnneeNMoins1()).thenReturn(-5.0);
+   }
 
     @Test
     void testClotureMois() throws SalarieException {
@@ -32,4 +47,36 @@ class SalarieAideADomicileServiceIntegrationTest {
         // Then
         Assertions.assertEquals(20, aide.getJoursTravaillesAnneeN());
     }
+
+
+    @ParameterizedTest(name = "Le resulat attendu est {5} ")
+    @CsvSource({
+            "'2022-01-01',20.0,'2020-01-01','2022-10-01','2022-10-27',36.0",
+            "'2022-02-01',15.0,'2021-01-04','2022-09-01','2022-09-16',25",
+            "'2022-08-01',8.0,'2019-05-08','2022-07-01','2022-07-03',13",
+    })
+    void testCalculeLimiteEntrepriseCongesPermis(String moisEnCours, double congesPayesAcquisAnneeNMoins1,
+                                                 String moisDebutContrat,
+                                                 String premierJourDeConge, String dernierJourDeConge, double expectedValue) {
+
+        //Given
+       long limiteConges = 0;
+        //When
+       limiteConges =  salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(
+                LocalDate.parse(moisEnCours),
+                congesPayesAcquisAnneeNMoins1,LocalDate.parse(moisDebutContrat),
+                LocalDate.parse(premierJourDeConge),
+                LocalDate.parse(dernierJourDeConge)
+
+        );
+        //Then
+        Assertions.assertEquals(expectedValue,limiteConges);
+    }
 }
+
+
+
+
+
+
+
