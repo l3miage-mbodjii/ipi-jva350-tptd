@@ -49,11 +49,12 @@ public class SalarieAideADomicileServiceTest {
     }
 
 
-    @ParameterizedTest(name = "Le resulat attendu est {5} ")
+    @ParameterizedTest(name = "Vous avez {5} jours de conges permis ")
     @CsvSource({
             "'2022-01-01',20.0,'2020-01-01','2022-10-01','2022-10-27',36.0",
-            "'2022-02-01',15.0,'2021-01-04','2022-09-01','2022-09-16',25",
-            "'2022-08-01',8.0,'2019-05-08','2022-07-01','2022-07-03',13",
+            "'2022-02-01',15.0,'2021-01-04','2022-09-01','2022-09-16',25.0",
+            "'2022-08-01',8.0,'2019-05-08','2022-07-01','2022-07-03',13.0",
+            "'2022-09-01',0.0,'2022-08-01','2022-09-03','2022-09-20',0.0"
     })
     void testCalculeLimiteEntrepriseCongesPermis(String moisEnCours, double congesPayesAcquisAnneeNMoins1,
                                                  String moisDebutContrat,
@@ -71,6 +72,23 @@ public class SalarieAideADomicileServiceTest {
         );
         //Then
         Assertions.assertEquals(expectedValue,limiteConges);
+    }
+
+    @BeforeEach
+    void testIntegrationCalculeLimiteEntrepriseCongesPermis() throws SalarieException {
+
+        SalarieAideADomicile aide = new SalarieAideADomicile("Jeanne",
+                LocalDate.of(2021, 7, 1), LocalDate.now(),
+                0, 0, 9,
+                1, 0);
+
+        salarieAideADomicileService.creerSalarieAideADomicile(aide);
+
+
+
+        salarieAideADomicileService.creerSalarieAideADomicile(aide);
+
+
     }
 }
 

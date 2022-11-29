@@ -1,6 +1,7 @@
 package com.ipi.jva350.repository;
 
 import com.ipi.jva350.model.SalarieAideADomicile;
+import com.ipi.jva350.repository.SalarieAideADomicileRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,5 +43,27 @@ class SalarieAideADomicileRepositoryTest {
         SalarieAideADomicile res = salarieAideADomicileRepository.findByNom(aide.getNom());
         // Then
         assertNotNull(res);
+    }
+
+
+    // A discuter
+    @Test
+    void partCongesPrisTotauxAnneeNMoins1() {
+
+        //Given
+        SalarieAideADomicile aide = new SalarieAideADomicile("Ibrahima",
+                LocalDate.of(2022, 8, 2), LocalDate.now(),
+                0, 0, 10,
+                3, 12);
+        salarieAideADomicileRepository.save(aide);
+
+        //When
+        Double res = salarieAideADomicileRepository.partCongesPrisTotauxAnneeNMoins1();
+
+
+        //Then
+        assertEquals(4.0,res);
+
+
     }
 }
