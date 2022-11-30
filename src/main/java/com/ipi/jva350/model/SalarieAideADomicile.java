@@ -3,7 +3,10 @@ package com.ipi.jva350.model;
 import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class SalarieAideADomicile {
@@ -36,7 +39,7 @@ public class SalarieAideADomicile {
     /** en année N sur l'acquis N-1 */
     @Convert(converter = LinkedHashSetStringConverter.class)
     @Column
-    private HashSet<LocalDate> congesPayesPris = new LinkedHashSet<LocalDate>();
+    private LinkedHashSet<LocalDate> congesPayesPris = new LinkedHashSet<LocalDate>();
     private double joursTravaillesAnneeNMoins1= 0;
     private double congesPayesAcquisAnneeNMoins1= 0;
     private double congesPayesPrisAnneeNMoins1= 0;
@@ -152,11 +155,11 @@ public class SalarieAideADomicile {
         this.congesPayesAcquisAnneeN = congesPayesAcquisAnneeN;
     }
 
-    public HashSet<LocalDate> getCongesPayesPris() {
+    public LinkedHashSet<LocalDate> getCongesPayesPris() {
         return congesPayesPris;
     }
 
-    public void setCongesPayesPris(HashSet<LocalDate> congesPayesPris) {
+    public void setCongesPayesPris(LinkedHashSet<LocalDate> congesPayesPris) {
         this.congesPayesPris = congesPayesPris;
     }
 
