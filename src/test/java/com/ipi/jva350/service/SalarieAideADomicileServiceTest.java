@@ -29,10 +29,8 @@ class SalarieAideADomicileServiceTest {
     @Autowired
     private SalarieAideADomicileService salarieAideADomicileService;
 
-    @BeforeEach
-    void repositSalarie(){
-       Mockito.when(salarieAideADomicileRepository.partCongesPrisTotauxAnneeNMoins1()).thenReturn(-5.0);
-    }
+    @Autowired
+    private SalarieAideADomicileRepository salarieAideADomicileRepositorybd;
 
     @Test
     void testClotureMois() throws SalarieException {
@@ -60,6 +58,7 @@ class SalarieAideADomicileServiceTest {
                                                  String premierJourDeConge, String dernierJourDeConge, double expectedValue) {
 
         //Given
+        Mockito.when(salarieAideADomicileRepository.partCongesPrisTotauxAnneeNMoins1()).thenReturn(-5.0);
        long limiteConges = 0;
         //When
        limiteConges =  salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(
@@ -74,35 +73,29 @@ class SalarieAideADomicileServiceTest {
     }
 
 
-    @ParameterizedTest(name = "Vous avez {10} jours de conges permis ")
-    @CsvSource({
-            "'Fall', '2020-01-01', '2022-01-01', 50.0, 20.0, 70.0, 40.0, 30.0, '2022-06-06', '2022-07-01', 54.0",
+    @Test
+    void testIntegrationCalculeLimiteEntrepriseCongesPermis() throws SalarieException {
 
-    })
-    void testIntegrationCalculeLimiteEntrepriseCongesPermis(String nom, String moisDebutContrat, String  moisEnCours,
-                                                            double joursTravaillesAnneeN, double congesPayesAcquisAnneeN,
-                                                            double joursTravaillesAnneeNMoins1,
-                                                            double congesPayesAcquisAnneeNMoins1,
-                                                            double congesPayesPrisAnneeNMoins1,String premierJourDeConge, String dernierJourDeConge, double expectedValue) throws SalarieException {
+        //Given
+    SalarieAideADomicile aide = new SalarieAideADomicile("Jeanne",
+            LocalDate.of(2021, 7, 1), LocalDate.now(),
+            0, 0, 9,
+            1, 0);
+      // When
+             salarieAideADomicileService.creerSalarieAideADomicile(aide);
+             double limiteConges = salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(
+                     aide.getMoisEnCours(),
+                     aide.getCongesPayesAcquisAnneeNMoins1(),
+                     aide.getMoisDebutContrat(),
+                     LocalDate.of(2022,8,01),
+                     LocalDate.of(2022,8,25)
+             );
 
-        SalarieAideADomicile aide = new SalarieAideADomicile(nom,LocalDate.parse(moisDebutContrat),
-                LocalDate.parse(moisEnCours),joursTravaillesAnneeN,congesPayesAcquisAnneeN,
-                joursTravaillesAnneeNMoins1,congesPayesAcquisAnneeNMoins1,congesPayesPrisAnneeNMoins1);
-
-        salarieAideADomicileService.creerSalarieAideADomicile(aide);
-
-        long limiteConges = 0;
-        //When
-        limiteConges =  salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(aide.getMoisEnCours(),aide.getCongesPayesAcquisAnneeNMoins1(),
-                aide.getMoisDebutContrat(),LocalDate.parse(premierJourDeConge),LocalDate.parse(dernierJourDeConge));
-
-        System.out.println(limiteConges);
-
-        Assertions.assertEquals(expectedValue,limiteConges);
-
+             //then
+        Assertions.assertEquals(1,limiteConges);
 
     }
-}
+    }
 
 
 
