@@ -158,7 +158,7 @@ public class SalarieAideADomicile {
         return congesPayesPris;
     }
 
-    public void setCongesPayesPris(LinkedHashSet<LocalDate> congesPayesPris) {
+    public void setCongesPayesPris(Set<LocalDate> congesPayesPris) {
         this.congesPayesPris = congesPayesPris;
     }
 
