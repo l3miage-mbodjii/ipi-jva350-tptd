@@ -20,7 +20,7 @@ public class SalarieAideADomicile {
 
     private String nom;
 
-    public static final List<DayOfWeek> joursHabituellementTravailles = new ArrayList<DayOfWeek>();
+    protected static final  List<DayOfWeek> joursHabituellementTravailles = new ArrayList<DayOfWeek>();
 
     static {
         joursHabituellementTravailles.add(DayOfWeek.MONDAY);
@@ -48,7 +48,6 @@ public class SalarieAideADomicile {
     }
 
     public SalarieAideADomicile(String nom, LocalDate moisDebutContrat, LocalDate moisEnCours,
-                                //LinkedHashSet<LocalDate> congesPayesPris,
                                 double joursTravaillesAnneeN, double congesPayesAcquisAnneeN,
                                 double joursTravaillesAnneeNMoins1, double congesPayesAcquisAnneeNMoins1, double congesPayesPrisAnneeNMoins1) {
         this.nom = nom;
