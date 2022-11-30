@@ -43,7 +43,7 @@ public class SalarieAideADomicile {
 
 
     public SalarieAideADomicile() {
-        throw  new UnsupportedOperationException();
+        //throw  new UnsupportedOperationException();
         //implémentation par défaut ignorée
     }
 
