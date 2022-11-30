@@ -179,7 +179,7 @@ public class SalarieAideADomicileService {
             clotureAnnee(salarieAideADomicile);
         }
 
-        salarieAideADomicileRepository.save(salarieAideADomicile);
+      salarieAideADomicileRepository.save(salarieAideADomicile);
     }
 
     /**
