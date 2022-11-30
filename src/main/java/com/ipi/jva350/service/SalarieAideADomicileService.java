@@ -23,6 +23,8 @@ public class SalarieAideADomicileService {
 
 
     public SalarieAideADomicileService() {
+        throw  new UnsupportedOperationException();
+        //implémentation par défaut ignorée
     }
 
     /**
