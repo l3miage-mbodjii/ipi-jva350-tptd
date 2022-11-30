@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class SalarieAideADomicileTest {
+class SalarieAideADomicileTest {
 
     @Test
     void aLegalementDroitADesCongesPayesNonInitialise() {

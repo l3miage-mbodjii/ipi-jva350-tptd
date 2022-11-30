@@ -71,7 +71,6 @@ public class SalarieAideADomicileService {
         // moyenne annuelle des congés pris :
        Double partCongesPrisTotauxAnneeNMoins1 = salarieAideADomicileRepository.partCongesPrisTotauxAnneeNMoins1();
 
-       // Double partCongesPrisTotauxAnneeNMoins1 = 15.0;
 
         // si la moyenne actuelle des congés pris diffère de 20% de la la proportion selon l'avancement dans l'année
         // pondérée avec poids plus gros sur juillet et août (20 vs 8),
@@ -163,7 +162,7 @@ public class SalarieAideADomicileService {
      * Met à jour les jours travaillés et congés payés restants de l'année N, décompte ceux de l'année N-1
      * on déduit un jour de congé entier pour chaque absence. Par exemple lors des vacances, pour savoir combien de jours de congés payés sont consommés, même si ladite absence dure seulement une demi-journée.
      * Si dernier mois de l'année, clôture aussi l'année
-     * @param salarieAideADomicile TODO nom ?
+     * @param salarieAideADomicile
      * @param joursTravailles
      */
     public void clotureMois(SalarieAideADomicile salarieAideADomicile, double joursTravailles) throws SalarieException {
