@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SalarieAideADomicileServiceTest {
+class SalarieAideADomicileServiceTest {
 
     @MockBean
     private SalarieAideADomicileRepository salarieAideADomicileRepository;
