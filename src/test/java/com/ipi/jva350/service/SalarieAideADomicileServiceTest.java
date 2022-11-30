@@ -29,11 +29,10 @@ class SalarieAideADomicileServiceTest {
     @Autowired
     private SalarieAideADomicileService salarieAideADomicileService;
 
-    @Test
     @BeforeEach
     void repositSalarie(){
        Mockito.when(salarieAideADomicileRepository.partCongesPrisTotauxAnneeNMoins1()).thenReturn(-5.0);
-   }
+    }
 
     @Test
     void testClotureMois() throws SalarieException {
