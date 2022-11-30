@@ -76,7 +76,10 @@ d'acceptation validant la fonctionnalité de clôture de mois d'un salarié aide
 - documentation : améliorez la documentation du code où c'est nécessaire. Générez localement la JavaDoc en utilisant Maven.
 - Rajoutez en entrée de ce README les badges Sonar des métriques importantes de votre projet, en utilisant l'API web de Sonar : https://sonarcloud.io/web_api/api/project_badges
 
-
+## Binome : Ibrahima Mbodji et Yaya Sakho
+Nous avons travaillé en pair programming, malgré qu'on a crée une branche nommée "evaluation" 
+c'etait pour avoir une meilleure lisibilitée, en somme tout notre travail se trouve dans la branche évaluation.
+et comme indiqué, on est parti sur le repo le plus complet des deux.
 ## TP d'évaluation
 
 Une fois le TD fini, réalisez les travaux de l'évaluation dans une branche "evaluation" créée à partir de la branche "master" de votre repository forké.
