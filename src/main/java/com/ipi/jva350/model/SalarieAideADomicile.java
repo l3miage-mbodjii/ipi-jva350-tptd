@@ -42,6 +42,7 @@ public class SalarieAideADomicile {
     private double congesPayesPrisAnneeNMoins1= 0;
 
     public SalarieAideADomicile() {
+        //implémentation par défaut ignorée
     }
 
     public SalarieAideADomicile(String nom, LocalDate moisDebutContrat, LocalDate moisEnCours,
