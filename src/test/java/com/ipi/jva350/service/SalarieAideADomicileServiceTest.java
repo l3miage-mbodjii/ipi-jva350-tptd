@@ -74,19 +74,32 @@ public class SalarieAideADomicileServiceTest {
         Assertions.assertEquals(expectedValue,limiteConges);
     }
 
-    @BeforeEach
-    void testIntegrationCalculeLimiteEntrepriseCongesPermis() throws SalarieException {
 
-        SalarieAideADomicile aide = new SalarieAideADomicile("Jeanne",
-                LocalDate.of(2021, 7, 1), LocalDate.now(),
-                0, 0, 9,
-                1, 0);
+    @ParameterizedTest(name = "Vous avez {10} jours de conges permis ")
+    @CsvSource({
+            "'Fall', '2020-01-01', '2022-01-01', 50.0, 20.0, 70.0, 40.0, 30.0, '2022-06-06', '2022-07-01', 54.0",
+
+    })
+    void testIntegrationCalculeLimiteEntrepriseCongesPermis(String nom, String moisDebutContrat, String  moisEnCours,
+                                                            double joursTravaillesAnneeN, double congesPayesAcquisAnneeN,
+                                                            double joursTravaillesAnneeNMoins1,
+                                                            double congesPayesAcquisAnneeNMoins1,
+                                                            double congesPayesPrisAnneeNMoins1,String premierJourDeConge, String dernierJourDeConge, double expectedValue) throws SalarieException {
+
+        SalarieAideADomicile aide = new SalarieAideADomicile(nom,LocalDate.parse(moisDebutContrat),
+                LocalDate.parse(moisEnCours),joursTravaillesAnneeN,congesPayesAcquisAnneeN,
+                joursTravaillesAnneeNMoins1,congesPayesAcquisAnneeNMoins1,congesPayesPrisAnneeNMoins1);
 
         salarieAideADomicileService.creerSalarieAideADomicile(aide);
 
+        long limiteConges = 0;
+        //When
+        limiteConges =  salarieAideADomicileService.calculeLimiteEntrepriseCongesPermis(aide.getMoisEnCours(),aide.getCongesPayesAcquisAnneeNMoins1(),
+                aide.getMoisDebutContrat(),LocalDate.parse(premierJourDeConge),LocalDate.parse(dernierJourDeConge));
 
+        System.out.println(limiteConges);
 
-        salarieAideADomicileService.creerSalarieAideADomicile(aide);
+        Assertions.assertEquals(expectedValue,limiteConges);
 
 
     }
