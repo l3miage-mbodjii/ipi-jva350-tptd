@@ -3,10 +3,7 @@ package com.ipi.jva350.model;
 import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class SalarieAideADomicile {
@@ -39,7 +36,7 @@ public class SalarieAideADomicile {
     /** en année N sur l'acquis N-1 */
     @Convert(converter = LinkedHashSetStringConverter.class)
     @Column
-    private LinkedHashSet<LocalDate> congesPayesPris = new LinkedHashSet<LocalDate>();
+    private Set<LocalDate> congesPayesPris = new LinkedHashSet<LocalDate>();
     private double joursTravaillesAnneeNMoins1= 0;
     private double congesPayesAcquisAnneeNMoins1= 0;
     private double congesPayesPrisAnneeNMoins1= 0;
@@ -78,7 +75,7 @@ public class SalarieAideADomicile {
      * @param dateFin
      * @return les jours de congé décomptés, ordonnés. Leur premier et dernier peuvent être après eux fournis.
      */
-    public LinkedHashSet<LocalDate> calculeJoursDeCongeDecomptesPourPlage(LocalDate dateDebut, LocalDate dateFin) {
+    public Set<LocalDate> calculeJoursDeCongeDecomptesPourPlage(LocalDate dateDebut, LocalDate dateFin) {
         LinkedHashSet<LocalDate> joursDeCongeDecomptes = new LinkedHashSet<>();
 
         if (dateDebut.isAfter(dateFin)) {
@@ -155,11 +152,11 @@ public class SalarieAideADomicile {
         this.congesPayesAcquisAnneeN = congesPayesAcquisAnneeN;
     }
 
-    public LinkedHashSet<LocalDate> getCongesPayesPris() {
+    public Set<LocalDate> getCongesPayesPris() {
         return congesPayesPris;
     }
 
-    public void setCongesPayesPris(LinkedHashSet<LocalDate> congesPayesPris) {
+    public void setCongesPayesPris(Set<LocalDate> congesPayesPris) {
         this.congesPayesPris = congesPayesPris;
     }
 

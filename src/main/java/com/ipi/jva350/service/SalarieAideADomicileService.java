@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -111,7 +112,7 @@ public class SalarieAideADomicileService {
             throw new SalarieException("N'a pas légalement droit à des congés payés !");
         }
 
-        LinkedHashSet<LocalDate> joursDecomptes = salarieAideADomicile
+        Set<LocalDate> joursDecomptes = salarieAideADomicile
                 .calculeJoursDeCongeDecomptesPourPlage(jourDebut, jourFin);
 
         if ( joursDecomptes.isEmpty()) {
@@ -123,7 +124,7 @@ public class SalarieAideADomicileService {
                 .isBefore(salarieAideADomicile.getMoisEnCours())) {
             throw new SalarieException("Pas possible de prendre de congé avant le mois en cours !");
         }
-        LinkedHashSet<LocalDate> congesPayesPrisDecomptesAnneeN = new LinkedHashSet<>(joursDecomptes.stream()
+         Set<LocalDate> congesPayesPrisDecomptesAnneeN = new LinkedHashSet<>(joursDecomptes.stream()
                 .filter(d -> !d.isAfter(LocalDate.of(Entreprise.getPremierJourAnneeDeConges(
                         salarieAideADomicile.getMoisEnCours()).getYear() + 1, 5, 31)))
                 .collect(Collectors.toList()));

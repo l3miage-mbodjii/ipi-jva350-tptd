@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class SalarieAideADomicileTest {
 
@@ -118,7 +119,7 @@ public class SalarieAideADomicileTest {
                 1, 0);
 
         // When :
-        LinkedHashSet<LocalDate> res = aide.calculeJoursDeCongeDecomptesPourPlage(
+        Set<LocalDate> res = aide.calculeJoursDeCongeDecomptesPourPlage(
                 LocalDate.of(2022, 7, 1), LocalDate.of(2022, 7, 2));
 
         // Then :
@@ -144,7 +145,7 @@ public class SalarieAideADomicileTest {
                 1, 0);
 
         // When :
-        LinkedHashSet<LocalDate> res = aide.calculeJoursDeCongeDecomptesPourPlage(
+         Set<LocalDate> res = aide.calculeJoursDeCongeDecomptesPourPlage(
                 LocalDate.parse(debut), LocalDate.parse(fin));
 
         // Then :
