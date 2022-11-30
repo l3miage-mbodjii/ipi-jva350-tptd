@@ -41,7 +41,9 @@ public class SalarieAideADomicile {
     private double congesPayesAcquisAnneeNMoins1= 0;
     private double congesPayesPrisAnneeNMoins1= 0;
 
+
     public SalarieAideADomicile() {
+        throw  new UnsupportedOperationException();
         //implémentation par défaut ignorée
     }
 
