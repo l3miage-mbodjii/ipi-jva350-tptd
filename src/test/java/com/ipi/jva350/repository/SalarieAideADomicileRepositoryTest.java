@@ -41,6 +41,7 @@ class SalarieAideADomicileRepositoryTest {
 
         // When
         SalarieAideADomicile res = salarieAideADomicileRepository.findByNom(aide.getNom());
+
         // Then
         assertNotNull(res);
     }

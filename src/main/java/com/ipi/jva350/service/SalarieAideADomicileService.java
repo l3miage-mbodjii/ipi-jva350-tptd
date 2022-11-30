@@ -11,6 +11,7 @@ import javax.persistence.EntityExistsException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.stream.Collectors;
 
@@ -193,7 +194,7 @@ public class SalarieAideADomicileService {
         salarieAideADomicile.setCongesPayesAcquisAnneeN(0);
 
         // on ne garde que les jours de congés pris sur la nouvelle année (voir ajouteCongés()) :
-        salarieAideADomicile.setCongesPayesPris(new LinkedHashSet<>(salarieAideADomicile.getCongesPayesPris().stream()
+        salarieAideADomicile.setCongesPayesPris(new HashSet<>(salarieAideADomicile.getCongesPayesPris().stream()
                 .filter(d -> d.isAfter(LocalDate.of(Entreprise.getPremierJourAnneeDeConges(
                         salarieAideADomicile.getMoisEnCours()).getYear(), 5, 31)))
                 .collect(Collectors.toList())));

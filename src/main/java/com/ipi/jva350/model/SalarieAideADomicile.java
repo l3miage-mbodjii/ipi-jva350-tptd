@@ -36,7 +36,7 @@ public class SalarieAideADomicile {
     /** en année N sur l'acquis N-1 */
     @Convert(converter = LinkedHashSetStringConverter.class)
     @Column
-    private LinkedHashSet<LocalDate> congesPayesPris = new LinkedHashSet<LocalDate>();
+    private HashSet<LocalDate> congesPayesPris = new LinkedHashSet<LocalDate>();
     private double joursTravaillesAnneeNMoins1= 0;
     private double congesPayesAcquisAnneeNMoins1= 0;
     private double congesPayesPrisAnneeNMoins1= 0;
@@ -152,11 +152,11 @@ public class SalarieAideADomicile {
         this.congesPayesAcquisAnneeN = congesPayesAcquisAnneeN;
     }
 
-    public Set<LocalDate> getCongesPayesPris() {
+    public HashSet<LocalDate> getCongesPayesPris() {
         return congesPayesPris;
     }
 
-    public void setCongesPayesPris(Set<LocalDate> congesPayesPris) {
+    public void setCongesPayesPris(HashSet<LocalDate> congesPayesPris) {
         this.congesPayesPris = congesPayesPris;
     }
 

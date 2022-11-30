@@ -75,7 +75,7 @@ class SalarieAideADomicileServiceTest {
     }
 
 
-    /*@ParameterizedTest(name = "Vous avez {10} jours de conges permis ")
+    @ParameterizedTest(name = "Vous avez {10} jours de conges permis ")
     @CsvSource({
             "'Fall', '2020-01-01', '2022-01-01', 50.0, 20.0, 70.0, 40.0, 30.0, '2022-06-06', '2022-07-01', 54.0",
 
@@ -102,7 +102,7 @@ class SalarieAideADomicileServiceTest {
         Assertions.assertEquals(expectedValue,limiteConges);
 
 
-    }*/
+    }
 }
 
 
