@@ -8,7 +8,7 @@ import java.util.*;
 @Entity
 public class SalarieAideADomicile {
 
-    public static final  float CONGES_PAYES_ACQUIS_PAR_MOIS = 2.5f;
+    public final float CONGES_PAYES_ACQUIS_PAR_MOIS = 2.5f;
 
 
     @Id
