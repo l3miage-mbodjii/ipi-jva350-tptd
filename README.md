@@ -118,5 +118,8 @@ fichier ne dépasse pas 1 MO.
 - BONUS : Créez une petite documentation statique en utilisant MkDocs.
 - Rédigez **ci-dessous** une courte analyse du rapport produit par Sonar (métriques, évolution, état général...) :
 
-Le rapport Sonar final indique nous avons 6 code smell, la fiabilité du code est à 100%.
+Le rapport Sonar final indique nous avons 5 code smell, la fiabilité du code est à 100%.
 0 vulnérabilités, nous avons 0% de duplications du code.
+Il y a quelques code smell qui sont relatifs aux exercices du td et on à pas
+voulu prendre trop de temps là-dessus afin de ne pas terminer le tp.
+
